@@ -6,5 +6,5 @@ def test_init_category(category_1):
     assert category.name == "Фрукты"
     assert category.description == "Сезонные"
     assert category.products[0].name == "Банан"
-    assert Category.count_category == 1
-    assert Category.count_products == 2
+    assert Category.category_count == 1
+    assert Category.product_count == 2
