@@ -10,5 +10,5 @@ def test_init_category(category_1, category_2, category_3):
     assert Category.category_count == 1
     assert Category.product_count == 2
     product = Product("Мандарин", "Сладкий", 50, 30)
-    category.add_products(product)
+    category.add_product(product)
     assert category.products == category_3
