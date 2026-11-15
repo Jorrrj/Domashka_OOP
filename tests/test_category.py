@@ -17,3 +17,5 @@ def test_init_category(category_1, category_2, category_3):
     assert category.products == category_3
     with pytest.raises(TypeError):
         category.add_product(5)
+    category_error = Category("Фрукты", "Сезонные", [])
+    assert category_error.middle_price() == 0

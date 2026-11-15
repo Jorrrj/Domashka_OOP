@@ -17,6 +17,8 @@ def test_init_products(product_2):
     assert red_product.name == "Банан"
     product_2 = Product("Мандарин", "Сладкий", 120, 5)
     assert product_1 + product_2 == 740
+    with pytest.raises(ValueError):
+        Product("Яблоко", "Зеленое", 60, 0)
 
 
 def test_init_subsidiary_class():
