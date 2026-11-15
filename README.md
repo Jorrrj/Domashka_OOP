@@ -1,6 +1,6 @@
 # ООР начинаем с описания основных сущностей и инициализации объектов.
 
-## Созданы классы Product и Category, Smartphone, LawnGrass.
+## Созданы классы Product и Category, Smartphone, LawnGrass, BaseProduct, MixinPrint.
     - Для класса Product описаны необходимые атрибуты.
     - Для класса Category определены необходимые атрибуты.
 
