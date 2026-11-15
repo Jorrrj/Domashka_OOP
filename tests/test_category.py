@@ -1,3 +1,5 @@
+import pytest
+
 from src.category import Category
 from src.product import Product
 
@@ -13,3 +15,5 @@ def test_init_category(category_1, category_2, category_3):
     product = Product("Мандарин", "Сладкий", 50, 30)
     category.add_product(product)
     assert category.products == category_3
+    with pytest.raises(TypeError):
+        category.add_product(5)

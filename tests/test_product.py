@@ -1,4 +1,6 @@
-from src.product import Product
+import pytest
+
+from src.product import LawnGrass, Product, Smartphone
 
 
 def test_init_products(product_2):
@@ -15,3 +17,14 @@ def test_init_products(product_2):
     assert red_product.name == "Банан"
     product_2 = Product("Мандарин", "Сладкий", 120, 5)
     assert product_1 + product_2 == 740
+
+
+def test_init_subsidiary_class():
+    smartphone1 = Smartphone("Nokia", "Быстрый", 5600, 2, 70, 206, 64, "Черный")
+    assert smartphone1.price == 5600
+    lawnGrass = LawnGrass("Газонная трава", "Густая", 8000, 2, "Россия", 8, "Зеленая")
+    assert lawnGrass.price == 8000
+    smartphone2 = Smartphone("Aple", "Шустрый", 9500, 5, 70, 206, 64, "Черный")
+    assert smartphone2 + smartphone1 == 58700
+    with pytest.raises(TypeError):
+        smartphone1 + lawnGrass
