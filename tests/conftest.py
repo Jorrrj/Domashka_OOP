@@ -24,3 +24,8 @@ def product_2():
 @pytest.fixture
 def category_3():
     return "Название продукта Банан, 55 руб. Остаток: 8 шт.\nНазвание продукта Яблоко, 60 руб. Остаток: 2 шт.\nНазвание продукта Мандарин, 50 руб. Остаток: 30 шт.\n"
+
+
+@pytest.fixture
+def product_test():
+    return Product("Яблоко", "Зеленое", 60, 2)

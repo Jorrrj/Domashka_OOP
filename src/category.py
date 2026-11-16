@@ -21,9 +21,12 @@ class Category:
             full_quantity_products += product.quantity
         return f"Название категории {self.name}, количество продуктов: {full_quantity_products} шт."
 
-    def add_product(self, Product):
-        self.__products.append(Product)
-        Category.product_count += 1
+    def add_product(self, product):
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.product_count += 1
+        else:
+            raise TypeError("Данные не относятся к классу продуктов")
 
     @property
     def products(self):
@@ -31,3 +34,9 @@ class Category:
         for product in self.__products:
             product_str += f"{str(product)}\n"
         return product_str
+
+    def middle_price(self):
+        try:
+            return round(sum([product.price for product in self.__products]) / len(self.__products), 1)
+        except ZeroDivisionError:
+            return 0

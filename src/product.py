@@ -1,4 +1,8 @@
-class Product:
+from src.base_class import BaseProduct
+from src.mixin import MixinPrint
+
+
+class Product(BaseProduct, MixinPrint):
     name: str
     description: str
     price: int
@@ -9,14 +13,21 @@ class Product:
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        if quantity <= 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+        else:
+            self.quantity = quantity
         self.full_price = full_price
+        super().__init__()
 
     def __str__(self):
         return f"Название продукта {self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        return (self.__price * self.quantity) + (other.__price * other.quantity)
+        if type(other) is self.__class__:
+            return (self.__price * self.quantity) + (other.__price * other.quantity)
+        else:
+            raise TypeError("Нельзя складывать разные типы данных")
 
     @classmethod
     def new_product(cls, product_dict):
@@ -37,3 +48,29 @@ class Product:
             self.__price = new_price
         else:
             print("Цена не должна быть нулевая или отрицательная")
+
+
+class Smartphone(Product):
+    efficiency: int
+    model: int
+    memory: int
+    color: str
+
+    def __init__(self, name, description, price, quantity, efficiency, model, memory, color, full_price=0):
+        super().__init__(name, description, price, quantity, full_price)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+    country: str
+    germination_period: int
+    color: str
+
+    def __init__(self, name, description, price, quantity, country, germination_period, color, full_price=0):
+        super().__init__(name, description, price, quantity, full_price)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
